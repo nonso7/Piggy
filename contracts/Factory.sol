@@ -61,7 +61,7 @@ function DepositDetails(address _Eachsaver, address _piggyBank, uint256 _amount,
     require(isDeployed[address(_piggyBank)], "Invalid deployed Address");
     require(_amount > 0, "Amount must be greater than zero");
 
-    bool txn = IERC20(_tokenAddress).transferFrom(msg.sender, address(this), _amount);
+    bool txn = IERC20(_tokenAddress).transferFrom(msg.sender, _piggyBank, _amount);
     require(txn, "txn failed");
     saverHistory[_Eachsaver].push(Deposit(_piggyBank, _amount, _startTime, _tokenAddress, _duration));
     userPurpose[_Eachsaver] = _purpose;
